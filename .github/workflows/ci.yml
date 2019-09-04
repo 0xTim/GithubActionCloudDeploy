@@ -33,6 +33,12 @@ jobs:
           ssh-keyscan git.code.vapor.cloud > ~/.ssh/known_hosts
           echo "$SSH_KEY" | base64 -d > ~/.ssh/id_rsa && \
           chmod 600 ~/.ssh/id_rsa
+          echo Key contents
+          ls ~/.ssh
+          echo Key is
+          cat ~/.ssh/id_rsa
+          echo Testing SSH connection to VC
+          ssh git@git.code.vapor.cloud
       - name: Set up Vapor Cloud Git
         run: |
           pwd
