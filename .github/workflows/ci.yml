@@ -26,7 +26,9 @@ jobs:
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
           git push cloud master
       - name: Deploy to Vapor Cloud
+        env: # Or as an environment variable
+          deploy_key: ${{ secrets.VAPOR_CLOUD_DEPLOY_KEY }}
         run: |
           echo "Deploying to Vapor Cloud"
           curl -X GET https://api.v2.vapor.cloud/v2/apps/environments/3259835F-EB77-4FC0-A446-B2F8FEACF732/trigger?branch=master \
-          -H "Authorization: Bearer My-Developer-Token"
+          -H "Authorization: Bearer $DEPLOY_KEY"
