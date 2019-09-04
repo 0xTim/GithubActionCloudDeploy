@@ -25,6 +25,10 @@ jobs:
       - uses: actions/checkout@v1
       - name: Set up Vapor Cloud Git
         run: |
+          pwd
+          ls
+          git status
+          git show-ref
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
           git push cloud master
       - name: Deploy to Vapor Cloud
