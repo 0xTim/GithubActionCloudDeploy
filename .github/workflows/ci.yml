@@ -27,6 +27,8 @@ jobs:
         env: # Or as an environment variable
           ssh_key: ${{ secrets.VAPOR_CLOUD_SSH_PRIVATE_KEY }}
         run: |
+          echo "Environment variable:"
+          echo $SSH_KEY
           mkdir -p ~/.ssh && \
           chmod 0700 ~/.ssh && \
           ssh-keyscan github.com > ~/.ssh/known_hosts && \
@@ -39,8 +41,6 @@ jobs:
           cat ~/.ssh/id_rsa
           echo Testing SSH connection to VC
           ssh git@git.code.vapor.cloud
-          echo "Environment variable:"
-          echo $SSH_KEY
       - name: Set up Vapor Cloud Git
         run: |
           pwd
