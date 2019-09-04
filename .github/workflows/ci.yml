@@ -16,3 +16,14 @@ jobs:
     - name: Build container
       run: |
         docker build -f web.Dockerfile .
+  deploy:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Vapor Cloud Git
+        run: |
+          git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
+          git push cloud master
+        run: |
+          echo "Deploying to Vapor Cloud"
