@@ -50,6 +50,7 @@ jobs:
           echo git remote add
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
           echo git push
+          git checkout -b master
           git push cloud master
       - name: Deploy to Vapor Cloud
         env: # Or as an environment variable
