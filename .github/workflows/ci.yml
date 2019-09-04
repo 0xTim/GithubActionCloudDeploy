@@ -12,12 +12,12 @@ jobs:
     - name: Run unit tests
       run: |
         echo Running unit tests
-        # docker build --tag unit-tests -f unitTests.dockerfile .
-        # docker run unit-tests
+        docker build --tag unit-tests -f unitTests.dockerfile .
+        docker run unit-tests
     - name: Build container
       run: |
         echo Building web dockerfile
-        # docker build -f web.Dockerfile .
+        docker build -f web.Dockerfile .
   deploy:
     runs-on: ubuntu-18.04
 
