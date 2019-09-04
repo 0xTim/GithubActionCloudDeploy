@@ -43,11 +43,13 @@ jobs:
           ssh git@git.code.vapor.cloud
       - name: Set up Vapor Cloud Git
         run: |
-          pwd
-          ls
+          echo git status
           git status
+          echo git show ref
           git show-ref
+          echo git remote add
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
+          echo git push
           git push cloud master
       - name: Deploy to Vapor Cloud
         env: # Or as an environment variable
