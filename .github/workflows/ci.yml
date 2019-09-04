@@ -30,7 +30,7 @@ jobs:
           git status
           git show-ref
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
-          git push cloud master
+          # git push cloud master
       - name: Deploy to Vapor Cloud
         env: # Or as an environment variable
           deploy_key: ${{ secrets.VAPOR_CLOUD_DEPLOY_KEY }}
