@@ -27,34 +27,20 @@ jobs:
         env: # Or as an environment variable
           SSH_KEY: ${{ secrets.VAPOR_CLOUD_SSH_PRIVATE_KEY }}
         run: |
-          echo "Environment variable:"
-          echo $SSH_KEY
           mkdir -p ~/.ssh && \
           chmod 0700 ~/.ssh && \
           ssh-keyscan github.com > ~/.ssh/known_hosts && \
           ssh-keyscan git.code.vapor.cloud > ~/.ssh/known_hosts
           echo "$SSH_KEY" | base64 -d > ~/.ssh/id_rsa && \
           chmod 600 ~/.ssh/id_rsa
-          echo Key contents
-          ls ~/.ssh
-          echo Key is
-          cat ~/.ssh/id_rsa
-          echo Testing SSH connection to VC
-          ssh git@git.code.vapor.cloud
       - name: Set up Vapor Cloud Git
         run: |
-          echo git status
-          git status
-          echo git show ref
-          git show-ref
-          echo git remote add
           git remote add cloud git@git.code.vapor.cloud:github-actions-deploy.git
-          echo git push
           git checkout -b master
           git push cloud master
       - name: Deploy to Vapor Cloud
         env: # Or as an environment variable
-          deploy_key: ${{ secrets.VAPOR_CLOUD_DEPLOY_KEY }}
+          DEPLOY_KEY: ${{ secrets.VAPOR_CLOUD_DEPLOY_KEY }}
         run: |
           echo "Deploying to Vapor Cloud"
           curl -X GET https://api.v2.vapor.cloud/v2/apps/environments/3259835F-EB77-4FC0-A446-B2F8FEACF732/trigger?branch=master \
