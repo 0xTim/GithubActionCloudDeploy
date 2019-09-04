@@ -39,6 +39,8 @@ jobs:
           cat ~/.ssh/id_rsa
           echo Testing SSH connection to VC
           ssh git@git.code.vapor.cloud
+          echo "Environment variable:"
+          echo $SSH_KEY
       - name: Set up Vapor Cloud Git
         run: |
           pwd
